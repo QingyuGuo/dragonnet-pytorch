@@ -145,7 +145,7 @@ def tarreg_loss(y_true, t_true, t_pred, y0_pred, y1_pred, eps, alpha=1.0, beta=1
     h = (t_true / t_pred) - ((1 - t_true) / (1 - t_pred))
 
     y_pert = y_pred + eps * h
-    targeted_regularization = torch.sum((y_true - y_pert)**2)
+    targeted_regularization = torch.mean((y_true - y_pert)**2)
 
     # final
     loss = vanilla_loss + beta * targeted_regularization
